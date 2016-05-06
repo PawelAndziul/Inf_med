@@ -24,9 +24,6 @@ public class MainWindowController {
 	private Button buttonLoadData;
 	
 	@FXML
-	private Button buttonInsertParameters;
-	
-	@FXML
 	private Button buttonStartAlgorithm;
 	
 	@FXML
@@ -92,13 +89,7 @@ public class MainWindowController {
 	@FXML
 	private void buttonLoadDataClicked()
 	{
-		System.out.println("buttonLoadDataClicked");
-	}
-
-	@FXML
-	private void buttonInsertParametersClicked()
-	{
-		System.out.println("buttonInsertParametersClicked");
+		loadAsPanel("view/LoadFileWindow.fxml");
 	}
 
 	@FXML
@@ -112,6 +103,7 @@ public class MainWindowController {
 	{
 		System.out.println("buttonShowResultsClicked");
 	}
+	
 	@FXML
 	private void menuButtonExitClicked()
 	{

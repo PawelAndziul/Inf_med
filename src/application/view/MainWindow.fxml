@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="436.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainWindowController">
+   <center>
+      <SplitPane dividerPositions="0.3010033444816054" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="434.0" prefWidth="300.0">
+               <children>
+                  <Button fx:id="buttonLoadData" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#buttonLoadDataClicked" prefHeight="25.0" prefWidth="152.0" text="Ładuj dane" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                  <Button fx:id="buttonInsertParameters" layoutX="10.0" layoutY="58.0" mnemonicParsing="false" onAction="#buttonInsertParametersClicked" text="Wpisz parametry" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0" />
+                  <Button fx:id="buttonStartAlgorithm" layoutX="14.0" layoutY="125.0" mnemonicParsing="false" onAction="#buttonStartAlgorithmClicked" text="Uruchom algorytm" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="130.0" />
+                  <Button fx:id="buttonShowResults" layoutX="10.0" layoutY="180.0" mnemonicParsing="false" onAction="#buttonShowResultsClicked" text="Wyświetl wyniki" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="190.0" />
+               </children>
+            </AnchorPane>
+          <AnchorPane fx:id="contentFrame" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+        </items>
+      </SplitPane>
+   </center>
+   <top>
+      <MenuBar prefWidth="529.0" BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem fx:id="menuButtonExit" mnemonicParsing="false" onAction="#menuButtonExitClicked" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+</BorderPane>

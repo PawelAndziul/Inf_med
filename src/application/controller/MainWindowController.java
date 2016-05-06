@@ -95,7 +95,7 @@ public class MainWindowController {
 	@FXML
 	private void buttonStartAlgorithmClicked()
 	{
-		System.out.println("buttonStartAlgorithmClicked");
+		loadAsPanel("view/RunAlgorithmWindow.fxml");
 	}
 	
 	@FXML

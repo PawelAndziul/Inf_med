@@ -48,7 +48,11 @@ public class LoadFileController {
 	    loader.setSource(file);
 	    loader.setFieldSeparator(";");
 	    
-	    return loader.getDataSet();
+	    
+	    Instances data = loader.getDataSet();
+	    data.setClassIndex(data.numAttributes() - 1);
+	    
+	    return data;
 	}
 	
 	@FXML

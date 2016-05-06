@@ -101,7 +101,7 @@ public class MainWindowController {
 	@FXML
 	private void buttonShowResultsClicked()
 	{
-		System.out.println("buttonShowResultsClicked");
+		loadAsPanel("view/DisplayResultsWindow.fxml");
 	}
 	
 	@FXML

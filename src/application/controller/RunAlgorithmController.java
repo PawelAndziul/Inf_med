@@ -1,5 +1,7 @@
 package application.controller;
 
+import java.util.Random;
+
 import application.Context;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -45,7 +47,8 @@ public class RunAlgorithmController {
 		classifier.buildClassifier(instances);
 		
 		Evaluation evaluation = new Evaluation(instances);
-		evaluation.evaluateModel(classifier, instances);
+		evaluation.crossValidateModel(classifier, instances, 10, new Random(1));
+		//evaluation.evaluateModel(classifier, instances);
 		
 		Context.setEvaluation(evaluation);
 	}

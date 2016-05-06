@@ -2,6 +2,7 @@ package application;
 
 import java.io.File;
 
+import weka.classifiers.Evaluation;
 import weka.core.Instances;
 
 public class Context {
@@ -11,7 +12,8 @@ public class Context {
     private static File loadedFile;
     
     private static Instances loadedInstance;
-    
+
+    private static Evaluation evaluation;
     
     public static Context getInstance() {
         return instance;
@@ -37,4 +39,13 @@ public class Context {
     	return loadedInstance;
     }
     
+    public static void setEvaluation(Evaluation _evaluation)
+    {
+    	evaluation = _evaluation;
+    }
+    
+    public static Evaluation getEvaluation()
+    {
+    	return evaluation;
+    }
 }

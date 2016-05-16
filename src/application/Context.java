@@ -15,6 +15,8 @@ public class Context {
 
     private static Evaluation evaluation;
     
+    private static int KNN;
+    
     public static Context getInstance() {
         return instance;
     }
@@ -47,5 +49,15 @@ public class Context {
     public static Evaluation getEvaluation()
     {
     	return evaluation;
+    }
+
+    public static void setKNN(int N)
+    {
+    	KNN = N;
+    }
+    
+    public static int getKNN()
+    {
+    	return KNN;
     }
 }

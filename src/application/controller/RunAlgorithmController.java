@@ -1,6 +1,8 @@
 package application.controller;
 
+import java.sql.Time;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import application.Context;
 import javafx.fxml.FXML;
@@ -34,6 +36,9 @@ public class RunAlgorithmController {
 	
 	@FXML
 	private TextField KNN;
+	
+	@FXML
+	private TextField textTime;
 	
 	@SuppressWarnings("unchecked")
 	@FXML
@@ -120,7 +125,14 @@ public class RunAlgorithmController {
 			classifier.buildClassifier(instances);
 			
 			Evaluation evaluation = new Evaluation(instances);
+			
+			Long end = 0L;
+			Long start = System.nanoTime();
 			evaluation.crossValidateModel(classifier, instances, 10, new Random(1));
+			end = System.nanoTime();
+
+			
+			textTime.setText("" + TimeUnit.MILLISECONDS.convert(end-start, TimeUnit.NANOSECONDS) + "ms");
 			
 			Context.setEvaluation(evaluation);
 		}

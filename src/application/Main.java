@@ -20,7 +20,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 
 		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("Interfejs desktopowy zarządzania hotelem");
+		this.primaryStage.setTitle("Analiza stopnia zlosliwosci komorek nowotworowych");
 
 		try
 		{
@@ -32,14 +32,10 @@ public class Main extends Application {
 
 			primaryStage.setScene(scene);
 			primaryStage.show();
-
-
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
-
 	}
-
 }

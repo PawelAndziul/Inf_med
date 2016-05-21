@@ -3,46 +3,41 @@ package application.controller;
 import java.io.IOException;
 
 import application.Main;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class MainWindowController {
-	
+
 	@FXML
 	private AnchorPane contentFrame;
-	
+
 	@FXML
 	private Button buttonLoadData;
-	
+
 	@FXML
 	private Button buttonStartAlgorithm;
-	
+
 	@FXML
 	private Button buttonShowResults;
-	
+
 	@FXML
 	private MenuItem menuButtonExit;
-	
+
 	@FXML
 	private void initialize()
 	{
 		loadAsPanel("view/StartWindow.fxml");
 	}
-	
-	public MainWindowController() 
-	{
-		
-	}
-	
+
+	public MainWindowController() {}
+
 	// load window as panel ("view/win.fxml")
 	private void loadAsPanel(String resourcePath)
 	{
@@ -65,7 +60,8 @@ public class MainWindowController {
 	}
 
 	// load as new window ("../view/win.fxml")
-	private void loadAsWindow(String resourcePath, String title)
+	@SuppressWarnings("unused")
+    private void loadAsWindow(String resourcePath, String title)
 	{
 		try {
 			Stage stage;
@@ -81,7 +77,6 @@ public class MainWindowController {
 			stage.showAndWait();
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -97,18 +92,16 @@ public class MainWindowController {
 	{
 		loadAsPanel("view/RunAlgorithmWindow.fxml");
 	}
-	
+
 	@FXML
 	private void buttonShowResultsClicked()
 	{
 		loadAsPanel("view/DisplayResultsWindow.fxml");
 	}
-	
+
 	@FXML
 	private void menuButtonExitClicked()
 	{
 		System.exit(0);
 	}
-	
 }
-

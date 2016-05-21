@@ -1,15 +1,15 @@
 package application.controller;
 
-import java.sql.Time;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
+
+import javax.swing.JOptionPane;
 
 import application.Context;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
 import weka.classifiers.Classifier;
 import weka.classifiers.Evaluation;
 import weka.classifiers.bayes.NaiveBayes;
@@ -22,44 +22,41 @@ import weka.core.ManhattanDistance;
 import weka.core.MinkowskiDistance;
 
 public class RunAlgorithmController {
-	
+
 	@SuppressWarnings("rawtypes")
 	@FXML
 	private ComboBox comboChooseAlgorithm;
-	
+
 	@SuppressWarnings("rawtypes")
 	@FXML
 	private ComboBox comboKNNDistance;
-	
+
 	@FXML
 	private Button buttonStart;
-	
+
 	@FXML
 	private TextField KNN;
-	
+
 	@FXML
 	private TextField textTime;
-	
+
 	@SuppressWarnings("unchecked")
 	@FXML
 	private void initialize()
 	{
 		comboChooseAlgorithm.getItems().add("Naive Bayes");
 		comboChooseAlgorithm.getItems().add("IBk - KNN");
-		
+
 		comboKNNDistance.getItems().add("Chebyshev Distance");
 		comboKNNDistance.getItems().add("Euclidean Distance");
 		comboKNNDistance.getItems().add("Filtered Distance");
 		comboKNNDistance.getItems().add("Manhattan Distance");
 		comboKNNDistance.getItems().add("Minkowski Distance");
-		
+
 		algorithmChanged();
 	}
-	
-	public RunAlgorithmController() 
-	{
-		
-	}
+
+	public RunAlgorithmController()	{}
 
 	@FXML
 	private void algorithmChanged()
@@ -76,7 +73,7 @@ public class RunAlgorithmController {
 			KNN.visibleProperty().set(true);
 		}
 	}
-	
+
 	private IBk AlgorithmIBk(int distance) throws Exception
 	{
 		IBk ibk = new IBk();
@@ -94,14 +91,14 @@ public class RunAlgorithmController {
 		}
 		return ibk;
 	}
-	
+
 	private NaiveBayes AlgorithmNaiveBayes() throws Exception
 	{
 		NaiveBayes nb = new NaiveBayes();
 		// options
 		return nb;
 	}
-	
+
 	@FXML
 	private void buttonStartClicked()
 	{
@@ -109,39 +106,36 @@ public class RunAlgorithmController {
 		{
 			if (!KNN.getText().equals(""))
 				Context.setKNN(Integer.parseInt(KNN.getText()));
-			
+
 			int selectedClassifierIndex = comboChooseAlgorithm.getSelectionModel().getSelectedIndex();
-			int selectedKNNDistanceIndex = comboKNNDistance.getSelectionModel().getSelectedIndex();			
-			
+			int selectedKNNDistanceIndex = comboKNNDistance.getSelectionModel().getSelectedIndex();
+
 			Instances instances = Context.getLoadedInstance();
 			Classifier classifier = null;
-			
+
 			switch (selectedClassifierIndex)
 			{
-			case 0: { classifier = (Classifier) AlgorithmNaiveBayes(); } break;
-			case 1: { classifier = (Classifier) AlgorithmIBk(selectedKNNDistanceIndex); } break;
+			case 0: { classifier = AlgorithmNaiveBayes(); } break;
+			case 1: { classifier = AlgorithmIBk(selectedKNNDistanceIndex); } break;
 			}
-			
+
 			classifier.buildClassifier(instances);
-			
+
 			Evaluation evaluation = new Evaluation(instances);
-			
+
 			Long end = 0L;
 			Long start = System.nanoTime();
+			// 10-cio krotna walidacja krzyzowa
 			evaluation.crossValidateModel(classifier, instances, 10, new Random(1));
 			end = System.nanoTime();
 
-			
 			textTime.setText("" + TimeUnit.MILLISECONDS.convert(end-start, TimeUnit.NANOSECONDS) + "ms");
-			
+
 			Context.setEvaluation(evaluation);
 		}
 		catch (Exception e)
 		{
-			System.out.println(e.toString());
+		    JOptionPane.showMessageDialog(null, "Plik nie zostal zaladowany lub algorytm nie zostal wybrany.", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	
-	
 }
-

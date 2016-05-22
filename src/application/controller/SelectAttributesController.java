@@ -68,10 +68,10 @@ public class SelectAttributesController {
         Instances instances = Context.getLoadedInstance();
         SortedSet<Map.Entry<Attribute,Double>> rankedAttributes = rankAttributes(instances);
 
-        String text = "";
+        String text = String.format("%-13s  %s\n" , "Nazwa_cechy", "Ranking");
         for (Entry<Attribute, Double> entry : rankedAttributes)
         {
-            text += String.format("%-13s= %s\n" , entry.getKey().name(), entry.getValue());
+            text += String.format("%-13s  %s\n" , entry.getKey().name(), entry.getValue());
         }
 
         textAttributes.setText(text);

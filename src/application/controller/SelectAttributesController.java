@@ -1,6 +1,7 @@
 package application.controller;
 
 import java.util.Comparator;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -21,9 +22,6 @@ import weka.core.Instances;
 public class SelectAttributesController {
 
     @FXML
-    private Button buttonAddAttribute;
-
-    @FXML
     private Button buttonDeleteAttribute;
 
     @FXML
@@ -36,8 +34,7 @@ public class SelectAttributesController {
 	    textAttributes.setFont(new Font("Courier New", 12));
 
 	    try {
-	        SortedSet<Map.Entry<Attribute,Double>> rankedAttributes = rankAttributes();
-    	    showkAttributes(rankedAttributes);
+    	    showkAttributes();
     	}
         catch (Exception e)
         {
@@ -47,26 +44,30 @@ public class SelectAttributesController {
 
 	public SelectAttributesController()	{}
 
-    private SortedSet<Map.Entry<Attribute,Double>> rankAttributes() throws Exception
+    private SortedSet<Map.Entry<Attribute,Double>> rankAttributes(Instances instances) throws Exception
     {
-        Instances instances = Context.getCurrentInstance();
-
         InfoGainAttributeEval eval = new InfoGainAttributeEval();
         eval.buildEvaluator(instances);
 
         Map<Attribute, Double> attScores = new HashMap<Attribute, Double>();
-        for (int i = 0; i < instances.numAttributes(); i++)
+        Enumeration<Attribute> enumeration = instances.enumerateAttributes();
+
+        int i = 0;
+        while (enumeration.hasMoreElements() == true)
         {
-            Attribute att = instances.attribute(i);
-            double score  = eval.evaluateAttribute(i);
+            Attribute att = enumeration.nextElement();
+            double score  = eval.evaluateAttribute(i++);
             attScores.put(att, score);
         }
 
         return entriesSortedByValues(attScores, 0);
     }
 
-    private void showkAttributes(SortedSet<Map.Entry<Attribute,Double>> rankedAttributes) throws Exception
+    private void showkAttributes() throws Exception
     {
+        Instances instances = Context.getLoadedInstance();
+        SortedSet<Map.Entry<Attribute,Double>> rankedAttributes = rankAttributes(instances);
+
         String text = "";
         for (Entry<Attribute, Double> entry : rankedAttributes)
         {
@@ -76,16 +77,32 @@ public class SelectAttributesController {
         textAttributes.setText(text);
     }
 
-	@FXML
-    private void buttonAddAttributeClicked()
-    {
-
-    }
-
     @FXML
-    private void buttonDeleteAttributeClicked()
+    private void buttonDeleteAttributeClicked() throws Exception
     {
+        Instances instances = Context.getLoadedInstance();
+        SortedSet<Map.Entry<Attribute,Double>> rankedAttributes = rankAttributes(instances);
 
+        if (rankedAttributes.size() > 1) {
+            Attribute lastAttribute = rankedAttributes.last().getKey();
+
+            int index = -1;
+            for (int i = 0; i < instances.numAttributes(); i++)
+            {
+                if (instances.attribute(i).name().equals(lastAttribute.name()))
+                {
+                    index = i;
+                }
+            }
+
+            instances.deleteAttributeAt(index);
+
+            showkAttributes();
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Nie mozna usunac wiecej cech.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     // Zrodlo: http://stackoverflow.com/questions/21267988/how-to-rank-features-by-their-importance-in-a-weka-classifier

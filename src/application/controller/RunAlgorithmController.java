@@ -110,7 +110,7 @@ public class RunAlgorithmController {
 			int selectedClassifierIndex = comboChooseAlgorithm.getSelectionModel().getSelectedIndex();
 			int selectedKNNDistanceIndex = comboKNNDistance.getSelectionModel().getSelectedIndex();
 
-			Instances instances = Context.getCurrentInstance();
+			Instances instances = Context.getLoadedInstance();
 			Classifier classifier = null;
 
 			switch (selectedClassifierIndex)

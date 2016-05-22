@@ -13,8 +13,9 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="434.0" prefWidth="300.0">
                <children>
                   <Button fx:id="buttonLoadData" layoutX="10.0" layoutY="42.0" mnemonicParsing="false" onAction="#buttonLoadDataClicked" prefHeight="25.0" prefWidth="152.0" text="Ładuj dane" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0" />
-                  <Button fx:id="buttonStartAlgorithm" layoutX="10.0" layoutY="107.0" mnemonicParsing="false" onAction="#buttonStartAlgorithmClicked" text="Uruchom algorytm" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0" />
-                  <Button fx:id="buttonShowResults" layoutX="10.0" layoutY="169.0" mnemonicParsing="false" onAction="#buttonShowResultsClicked" text="Wyświetl wyniki" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="140.0" />
+                  <Button fx:id="buttonStartAlgorithm" layoutX="10.0" layoutY="107.0" mnemonicParsing="false" onAction="#buttonStartAlgorithmClicked" text="Uruchom algorytm" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="140.0" />
+                  <Button fx:id="buttonShowResults" layoutX="10.0" layoutY="169.0" mnemonicParsing="false" onAction="#buttonShowResultsClicked" text="Wyświetl wyniki" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="200.0" />
+                  <Button fx:id="buttonSelectAttributes" layoutX="31.0" layoutY="80.0" mnemonicParsing="false" onAction="#buttonSelectAttributesClicked" text="Wybierz cechy" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0" />
                </children>
             </AnchorPane>
           <AnchorPane fx:id="contentFrame" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />

@@ -1,17 +1,11 @@
 package application.controller;
 
-import java.io.IOException;
-
 import application.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 public class MainWindowController {
 
@@ -26,6 +20,9 @@ public class MainWindowController {
 
 	@FXML
 	private Button buttonShowResults;
+
+	@FXML
+    private Button buttonSelectAttributes;
 
 	@FXML
 	private MenuItem menuButtonExit;
@@ -59,9 +56,10 @@ public class MainWindowController {
 		}
 	}
 
+
 	// load as new window ("../view/win.fxml")
-	@SuppressWarnings("unused")
-    private void loadAsWindow(String resourcePath, String title)
+	/*
+	private void loadAsWindow(String resourcePath, String title)
 	{
 		try {
 			Stage stage;
@@ -80,6 +78,7 @@ public class MainWindowController {
 			e.printStackTrace();
 		}
 	}
+	*/
 
 	@FXML
 	private void buttonLoadDataClicked()
@@ -98,6 +97,12 @@ public class MainWindowController {
 	{
 		loadAsPanel("view/DisplayResultsWindow.fxml");
 	}
+
+	@FXML
+    private void buttonSelectAttributesClicked()
+    {
+        loadAsPanel("view/SelectAttributesWindow.fxml");
+    }
 
 	@FXML
 	private void menuButtonExitClicked()

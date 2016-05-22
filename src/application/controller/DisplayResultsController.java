@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import application.Context;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
+import javafx.scene.text.Font;
 import weka.classifiers.Evaluation;
 
 public class DisplayResultsController {
@@ -15,6 +16,9 @@ public class DisplayResultsController {
 	@FXML
 	private void initialize() throws Exception
 	{
+	    textAreaResults.setEditable(false);
+	    textAreaResults.setFont(new Font("Courier New", 12));
+
 		loadResults();
 	}
 

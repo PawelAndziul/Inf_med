@@ -13,6 +13,9 @@ public class Context {
 
     private static Instances loadedInstance = null;
 
+    // Brane pod uwage przy algorytmach. Uzytkownik mogl usunac czesc atrybutow
+    private static Instances currentInstance;
+
     private static Evaluation evaluation;
 
     private static int KNN;
@@ -34,11 +37,22 @@ public class Context {
     public static void setLoadedInstance(Instances instances)
     {
     	loadedInstance = instances;
+    	setCurrentInstance(instances);
     }
 
     public static Instances getLoadedInstance()
     {
     	return loadedInstance;
+    }
+
+    public static void setCurrentInstance(Instances instances)
+    {
+        currentInstance = instances;
+    }
+
+    public static Instances getCurrentInstance()
+    {
+        return currentInstance;
     }
 
     public static void setEvaluation(Evaluation _evaluation)

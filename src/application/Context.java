@@ -10,13 +10,13 @@ public class Context {
     private final static Context instance = new Context();
 
     private static File loadedFile;
-    
-    private static Instances loadedInstance;
+
+    private static Instances loadedInstance = null;
 
     private static Evaluation evaluation;
-    
+
     private static int KNN;
-    
+
     public static Context getInstance() {
         return instance;
     }
@@ -25,7 +25,7 @@ public class Context {
     {
     	loadedFile = file;
     }
-    
+
     public static File getLoadedFile()
     {
     	return loadedFile;
@@ -35,17 +35,17 @@ public class Context {
     {
     	loadedInstance = instances;
     }
-    
+
     public static Instances getLoadedInstance()
     {
     	return loadedInstance;
     }
-    
+
     public static void setEvaluation(Evaluation _evaluation)
     {
     	evaluation = _evaluation;
     }
-    
+
     public static Evaluation getEvaluation()
     {
     	return evaluation;
@@ -55,7 +55,7 @@ public class Context {
     {
     	KNN = N;
     }
-    
+
     public static int getKNN()
     {
     	return KNN;

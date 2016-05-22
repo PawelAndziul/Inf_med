@@ -26,7 +26,15 @@ public class LoadFileController {
 	private Button buttonLoadFile;
 
 	@FXML
-	private void initialize() {}
+	private void initialize() throws Exception
+	{
+	    if (Context.getLoadedInstance() == null) {
+    	    File file = new File("dane/stopien_zlosliwosci.csv");
+    	    Instances instances = loadCSVFile(file);
+            Context.setLoadedInstance(instances);
+            JOptionPane.showMessageDialog(null, "Domyslny plik zaladowany.");
+	    }
+	}
 
 	public LoadFileController() {}
 
